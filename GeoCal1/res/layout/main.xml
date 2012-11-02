@@ -1,0 +1,36 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <com.google.android.maps.MapView
+        android:id="@+id/mapView"
+        android:layout_width="match_parent"
+        android:layout_height="270dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:apiKey="02jbxfKiB6bjOHDCepl1doSKt3tftNBFtHTzUqQ"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp" >
+    </com.google.android.maps.MapView>
+
+    <ListView
+        android:id="@+id/listEvents"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/button1" >
+
+    </ListView>
+
+    <Button
+        android:id="@+id/button1"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/mapView"
+        android:text="Nuovo Evento" />
+
+</RelativeLayout>

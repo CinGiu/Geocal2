@@ -1,0 +1,50 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <Button
+        android:id="@+id/SaveNewPrefLocation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:text="Aggiungi Ai Preferiti" />
+
+    <com.google.android.maps.MapView
+        android:id="@+id/mapView_Pref"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:layout_above="@+id/SaveNewPrefLocation"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/CercaPrefLocation"
+        android:apiKey="02jbxfKiB6bjOHDCepl1doSKt3tftNBFtHTzUqQ"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp" >
+
+    </com.google.android.maps.MapView>
+
+    <ImageButton
+        android:id="@+id/CercaPrefLocation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+         android:layout_marginLeft="18dp"
+         android:layout_marginTop="15dp"
+        android:src="@drawable/ic_action_search" />
+
+    <EditText
+        android:id="@+id/posizione_Pref"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/CercaPrefLocation"
+        android:layout_alignParentLeft="true"
+        android:layout_toLeftOf="@+id/CercaPrefLocation"
+        android:ems="10" >
+
+        <requestFocus />
+    </EditText>
+
+</RelativeLayout>

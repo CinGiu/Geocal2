@@ -1,0 +1,42 @@
+<resources>
+
+    <string name="app_name">GeoCal</string>
+    <string name="menu_settings">Settings</string>
+    <string name="title_activity_main">GeoCal</string>
+    <string name="b_addNewEvent">Aggiungi Evento</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="title_activity_new_event">NewEvent</string>
+    <string name="Movimenti_prompt">Scatena Se Sono In:</string>
+    <string name="Action_prompt">Esegui:</string>
+    <string name="Ripetition_prompt">Ripeti:</string>
+
+    <string-array name="Movimenti_array">
+        <item>Posizione Esatta (Raggio)</item>
+        <item>Avvicinamento</item>
+        <item>Allontanamento</item>
+    </string-array>
+    <string-array name="Action_array">
+        <item>Promemoria</item>
+        <item>Attiva Servizio</item>
+        <item>Disattiva Servizio</item>
+        <item>Apri App</item>
+        <item>Chiudi App</item>
+    </string-array>
+    <string-array name="Service_array">
+        <item>WIFI</item>
+        <item>Vibrazione</item>
+        <item>Muto</item>
+    </string-array>
+    <string-array name="Ripetition_array">
+        <item>Si</item>
+        <item>No</item>
+    </string-array>
+    <string-array name="App_array"></string-array>
+
+    <string name="title_activity_new_notification">NewNotification</string>
+    <string name="title_activity_show_event">ShowEvent</string>
+    <string name="title_activity_success_event">SuccessEvent</string>
+    <string name="title_activity_new_pref_position">NewPrefPosition</string>
+    <string name="white">#FFFFFF</string>
+
+</resources>
