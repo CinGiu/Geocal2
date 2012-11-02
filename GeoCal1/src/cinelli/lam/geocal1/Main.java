@@ -50,7 +50,7 @@ public class Main extends MapActivity implements OnClickListener, OnItemClickLis
     GeoPoint p;
     MapOverlay itemizedoverlay;
     Drawable drawable;
-    
+     
     LocationManager locationManager;
     EventsDataSource DS = new EventsDataSource(this);
 	int[] list_IDevent = new int[50];
