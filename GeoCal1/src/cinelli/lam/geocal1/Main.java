@@ -1,4 +1,4 @@
-package cinelli.lam.geocal1;
+package cinelli.lam.geocal1;   
 
 
 import android.app.PendingIntent;
