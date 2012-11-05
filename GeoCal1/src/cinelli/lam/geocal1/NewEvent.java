@@ -83,14 +83,14 @@ public class NewEvent extends MapActivity implements OnClickListener, OnItemSele
         ED_PromemoMsg = (EditText) findViewById(R.id.ED_Promem);
         ED_Raggio = (EditText) findViewById(R.id.ED_Raggio);
         
-        SP_azione = (Spinner) findViewById(R.id.Action_spinner);
+       // SP_azione = (Spinner) findViewById(R.id.Action_spinner);
         SP_App = (Spinner) findViewById(R.id.app_spinner);
         SP_Serv = (Spinner) findViewById(R.id.service_spinner);
         SP_movimento = (Spinner) findViewById(R.id.Movimenti_spinner);
         
         Ripetition_CB = (CheckBox) findViewById(R.id.Ripetition_CB);
         
-        root = (LinearLayout) findViewById(R.id.NChangable);
+        //root = (LinearLayout) findViewById(R.id.NChangable);
         promemoria = (View) findViewById(R.id.l_promemoria);
         app = (View) findViewById(R.id.l_app);
         servizio = (View) findViewById(R.id.l_servizio);

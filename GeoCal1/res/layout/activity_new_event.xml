@@ -1,8 +1,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
-    android:layout_height="517dp" 
-    >
+    android:layout_height="wrap_content"
+    android:gravity="clip_vertical" >
 
     <ScrollView
         xmlns:android="http://schemas.android.com/apk/res/android"
@@ -10,183 +10,10 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content" >
 
-        <RelativeLayout
-            xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:tools="http://schemas.android.com/tools"
-            android:layout_width="wrap_content"
-            android:layout_height="484dp"
-            >
-
-            <TextView
-                android:id="@+id/titoloEvento_TW"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentTop="true"
-                android:layout_marginTop="70dp"
-                android:text="Titolo"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                tools:ignore="HardcodedText" />
-
-            <View
-                android:id="@+id/Hline1"
-                android:layout_width="fill_parent"
-                android:layout_height="2dip"
-                android:layout_alignParentLeft="true"
-                android:layout_below="@+id/titoloEvento_TW"
-                android:layout_marginTop="26dp"
-                android:background="#FF00FF00" />
-
-            <EditText
-                android:id="@+id/eventEtichetta_ED"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignBaseline="@+id/titoloEvento_TW"
-                android:layout_alignBottom="@+id/titoloEvento_TW"
-                android:layout_alignParentRight="true"
-                android:ems="10"
-                tools:ignore="TextFields" >
-            </EditText>
-
-            <ImageButton
-                android:id="@+id/imageButton1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_below="@+id/Hline1"
-                android:layout_marginLeft="18dp"
-                android:layout_marginTop="15dp"
-                android:src="@drawable/ic_action_search" />
-
-            <AutoCompleteTextView
-                android:id="@+id/posizione_ED"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignBottom="@+id/imageButton1"
-                android:layout_alignParentRight="true"
-                android:layout_alignRight="@+id/eventEtichetta_ED"
-                android:completionThreshold="1"
-                android:ems="10" />
-
-            <com.google.android.maps.MapView
-                android:id="@+id/mapView"
-                android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:layout_alignParentLeft="true"
-                android:layout_below="@+id/imageButton1"
-                android:apiKey="02jbxfKiB6bjOHDCepl1doSKt3tftNBFtHTzUqQ"
-                android:paddingLeft="5dp"
-                android:paddingRight="5dp" >
-            </com.google.android.maps.MapView>
-
-            <Spinner
-                android:id="@+id/Movimenti_spinner"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_below="@+id/mapView"
-                android:layout_marginRight="24dp"
-                android:layout_marginTop="25dp"
-                android:entries="@array/Movimenti_array"
-                android:prompt="@string/Movimenti_prompt" />
-
-            <View
-                android:id="@+id/View02"
-                android:layout_width="fill_parent"
-                android:layout_height="2dip"
-                android:layout_above="@+id/Movimenti_spinner"
-                android:layout_alignParentLeft="true"
-                android:background="#FF00FF00" />
-
-            <TextView
-                android:id="@+id/TitleNotificaSection"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignBottom="@+id/Movimenti_spinner"
-                android:layout_alignParentLeft="true"
-                android:text="Quando: "
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                tools:ignore="HardcodedText" />
-
-            <EditText
-                android:id="@+id/ED_Raggio"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignLeft="@+id/Movimenti_spinner"
-                android:layout_alignParentRight="true"
-                android:layout_below="@id/Movimenti_spinner"
-                android:ems="10"
-                android:inputType="number" />
-
-            <View
-                android:id="@+id/View01"
-                android:layout_width="fill_parent"
-                android:layout_height="2dip"
-                android:layout_alignParentLeft="true"
-                android:layout_below="@id/ED_Raggio"
-                android:layout_marginTop="26dp"
-                android:background="#FF00FF00" />
-
-            <TextView
-                android:id="@+id/Title_NotificaToIntent"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_below="@id/View01"
-                android:text="Avanzate"
-                android:textAppearance="?android:attr/textAppearanceLarge" />
-
-            <Spinner
-                android:id="@+id/Action_spinner"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_below="@id/Title_NotificaToIntent"
-                android:layout_marginRight="28dp"
-                android:entries="@array/Action_array"
-                android:prompt="@string/Action_prompt" />
-
-            <LinearLayout
-                xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:tools="http://schemas.android.com/tools"
-                android:id="@+id/NChangable"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_below="@+id/Action_spinner" >
-            </LinearLayout>
-
-            <View
-                android:id="@+id/View03"
-                android:layout_width="fill_parent"
-                android:layout_height="2dip"
-                android:layout_alignParentLeft="true"
-                android:layout_below="@id/NChangable"
-                android:layout_marginTop="26dp"
-                android:background="#FF00FF00" />
-
-            <TextView
-                android:id="@+id/Title_Ripetition"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_below="@id/View03"
-                android:text="Ripetere?"
-                android:textAppearance="?android:attr/textAppearanceLarge" />
-
-            <CheckBox
-                android:id="@+id/Ripetition_CB"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_alignTop="@+id/Title_Ripetition" />
-
-            
-
-        </RelativeLayout>
     </ScrollView>
     <Button
                 android:id="@+id/Return"
-                android:layout_width="100dp"
+                android:layout_width="90dp"
                 android:layout_height="50dp"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentTop="true"
@@ -195,11 +22,163 @@
 
             <Button
                 android:id="@+id/SaveNewEvent"
-                android:layout_width="100dp"
+                android:layout_width="90dp"
                 android:layout_height="50dp"
                 android:layout_alignParentTop="true"
                 android:layout_toLeftOf="@+id/Return"
                 android:text="Salva" 
                 android:background="#9F9EAD"/>
+
+            <RelativeLayout
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true" >
+
+                <TextView
+                    android:id="@+id/titoloEvento_TW"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="70dp"
+                    android:text="Titolo"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    tools:ignore="HardcodedText" />
+
+                <View
+                    android:id="@+id/Hline1"
+                    android:layout_width="fill_parent"
+                    android:layout_height="1dip"
+                    android:layout_alignParentLeft="true"
+                    android:layout_below="@+id/titoloEvento_TW"
+                    android:layout_marginTop="4dp"
+                    android:background="#FF00FF00" />
+
+                <ImageButton
+                    android:id="@+id/imageButton1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_below="@+id/Hline1"
+                    android:layout_marginTop="4dp"
+                    android:src="@drawable/ic_action_search" />
+
+                <com.google.android.maps.MapView
+                    android:id="@+id/mapView"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_below="@+id/imageButton1"
+                    android:apiKey="02jbxfKiB6bjOHDCepl1doSKt3tftNBFtHTzUqQ"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp" >
+                </com.google.android.maps.MapView>
+
+                <AutoCompleteTextView
+                    android:id="@+id/posizione_ED"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@+id/imageButton1"
+                    android:layout_alignParentLeft="true"
+                    android:layout_below="@+id/Hline1"
+                    android:layout_toLeftOf="@+id/imageButton1"
+                    android:completionThreshold="1"
+                    android:ems="10" />
+
+                <EditText
+                    android:id="@+id/eventEtichetta_ED"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_above="@+id/Hline1"
+                    android:layout_alignParentRight="true"
+                    android:ems="10"
+                    tools:ignore="TextFields" />
+
+                <TextView
+                    android:id="@+id/Title_NotificaToIntent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/View03"
+                    android:layout_marginTop="18dp"
+                    android:text="Avanzate"
+                    android:textAppearance="?android:attr/textAppearanceLarge" />
+
+                <View
+                    android:id="@+id/View01"
+                    android:layout_width="fill_parent"
+                    android:layout_height="1dip"
+                    android:layout_below="@+id/TitleNotificaSection"
+                    android:background="#FF00FF00" />
+
+                <Spinner
+                    android:id="@+id/Movimenti_spinner"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@+id/TitleNotificaSection"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignTop="@+id/ED_Raggio"
+                    android:entries="@array/Movimenti_array"
+                    android:prompt="@string/Movimenti_prompt" />
+
+                <View
+                    android:id="@+id/View02"
+                    android:layout_width="fill_parent"
+                    android:layout_height="1dip"
+                    android:layout_alignBottom="@+id/mapView"
+                    android:layout_alignParentLeft="true"
+                    android:background="#FF00FF00" />
+
+                <TextView
+                    android:id="@+id/TitleNotificaSection"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/View02"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginLeft="24dp"
+                    android:layout_toRightOf="@+id/Movimenti_spinner"
+                    android:text="Un Raggio di Km:
+                    "                    
+                    tools:ignore="HardcodedText" />
+
+                <EditText
+                    android:id="@+id/ED_Raggio"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@+id/TitleNotificaSection"
+                    android:layout_marginLeft="24dp"
+                    android:layout_toRightOf="@+id/TitleNotificaSection"
+                   	android:layout_below="@+id/View02"
+                    android:ems="10"
+                    android:inputType="number" >
+                </EditText>
+
+                <TextView
+                    android:id="@+id/Title_Ripetition"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/View01"
+                    android:layout_marginLeft="11dp"
+                    android:layout_marginTop="20dp"
+                    android:text="Ripetizione" />
+
+                <CheckBox
+                    android:id="@+id/Ripetition_CB"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBaseline="@+id/Title_Ripetition"
+                    android:layout_alignBottom="@+id/Title_Ripetition"
+                    android:layout_toRightOf="@+id/posizione_ED" />
+                <View
+                    android:id="@+id/View03"
+                    android:layout_width="fill_parent"
+                    android:layout_height="2dip"
+                    android:layout_below="@+id/Ripetition_CB"
+                    android:layout_marginTop="14dp"
+                    android:background="#FF00FF00" />
+
+            </RelativeLayout>
 
 </RelativeLayout>
