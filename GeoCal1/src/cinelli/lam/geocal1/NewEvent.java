@@ -83,9 +83,9 @@ public class NewEvent extends MapActivity implements OnClickListener, OnItemSele
         ED_PromemoMsg = (EditText) findViewById(R.id.ED_Promem);
         ED_Raggio = (EditText) findViewById(R.id.ED_Raggio);
         
-       // SP_azione = (Spinner) findViewById(R.id.Action_spinner);
-        SP_App = (Spinner) findViewById(R.id.app_spinner);
-        SP_Serv = (Spinner) findViewById(R.id.service_spinner);
+        //SP_azione = (Spinner) findViewById(R.id.Action_spinner);
+        SP_App = (Spinner) findViewById(R.id.spinner3);
+        SP_Serv = (Spinner) findViewById(R.id.Service_list_SP);
         SP_movimento = (Spinner) findViewById(R.id.Movimenti_spinner);
         
         Ripetition_CB = (CheckBox) findViewById(R.id.Ripetition_CB);
@@ -108,7 +108,7 @@ public class NewEvent extends MapActivity implements OnClickListener, OnItemSele
         Find_Position.setOnClickListener(this);
         addNweEvent.setOnClickListener(this);
         ED_posizione.setOnClickListener(this);
-        SP_azione.setOnItemSelectedListener(this);
+        //SP_azione.setOnItemSelectedListener(this);
         
         fillAutoCompliteLocation();
         
@@ -117,6 +117,7 @@ public class NewEvent extends MapActivity implements OnClickListener, OnItemSele
         AutoCompleteTextView textView = (AutoCompleteTextView)
                 findViewById(R.id.posizione_ED);
         textView.setAdapter(adapter);
+        getAppList();
     }
 
     @Override
@@ -199,12 +200,16 @@ public class NewEvent extends MapActivity implements OnClickListener, OnItemSele
 	public void getAppList(){
 		List<PackageInfo> packs = getPackageManager().getInstalledPackages(0);
         System.out.println(packs.size());
+        System.out.println("aplist");
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getApplicationContext(),android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+      
+       
         for(int i=0;i<packs.size();i++) {
-        	
 	        PackageInfo p = packs.get(i);
-	        System.out.println(p.applicationInfo.loadLabel(getPackageManager()).toString());
-	        System.out.println(i);
+	        adapter.add(p.applicationInfo.loadLabel(getPackageManager()).toString());
         }
+        SP_App.setAdapter(adapter);
       }
 
 	public void putMarkers(){

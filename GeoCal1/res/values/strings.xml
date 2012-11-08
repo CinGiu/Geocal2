@@ -6,7 +6,7 @@
     <string name="b_addNewEvent">Aggiungi Evento</string>
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_new_event">NewEvent</string>
-    <string name="Movimenti_prompt">Scatena Se Sono In:</string>
+    <string name="Movimenti_prompt"></string>
     <string name="Action_prompt">Esegui:</string>
     <string name="Ripetition_prompt">Ripeti:</string>
 
@@ -24,12 +24,12 @@
     </string-array>
     <string-array name="Service_array">
         <item>WIFI</item>
-        <item>Vibrazione</item>
-        <item>Muto</item>
+        <item>Suoneria</item>
+        <item>Silenzioso</item>
     </string-array>
-    <string-array name="Ripetition_array">
-        <item>Si</item>
-        <item>No</item>
+    <string-array name="ON_OFF">
+        <item>Attiva</item>
+        <item>Disattiva</item>
     </string-array>
     <string-array name="App_array"></string-array>
 
