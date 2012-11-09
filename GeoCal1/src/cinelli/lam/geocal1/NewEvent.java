@@ -46,20 +46,28 @@ import android.widget.Spinner;
 public class NewEvent extends MapActivity implements OnClickListener, OnItemSelectedListener{
 	
 	EventsDataSource DS = new EventsDataSource(this);
+	
 	Button addNweEvent;
-	EditText ED_etichetta; 
+	Button close;
+	
 	AutoCompleteTextView ED_posizione;
+	EditText ED_etichetta;
 	EditText ED_PromemoMsg;
 	EditText ED_Raggio;
+	
 	Spinner SP_movimento;
-	Spinner SP_App;
-	Spinner SP_Serv;
-	Spinner SP_azione;
+	Spinner SP_App_List;
+	Spinner SP_Serv_List;
+	
+	Spinner SP_App_Action;
+	Spinner SP_Service_action;
+	
 	LinearLayout root; 
-	View promemoria;
-	View app;
-	View servizio;
+	
 	CheckBox Ripetition_CB;
+	CheckBox Service_CB;
+	CheckBox App_CB;
+	
 	int sceltaID = 0;
 		/*Variabili per la gestione della mappetta*/
 	private MapController mapController;
@@ -70,30 +78,35 @@ public class NewEvent extends MapActivity implements OnClickListener, OnItemSele
     MapOverlay itemizedoverlay;
     Drawable drawable;
     ImageButton Find_Position;
+    
     private static final ArrayList<String> listPrefPosition = new ArrayList<String>();
+    
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_event);
         
         addNweEvent = (Button) findViewById(R.id.SaveNewEvent);
+        close = (Button) findViewById(R.id.Return);
         
+        //EditText
         ED_etichetta = (EditText) findViewById(R.id.eventEtichetta_ED);
         ED_posizione = (AutoCompleteTextView) findViewById(R.id.posizione_ED);
         ED_PromemoMsg = (EditText) findViewById(R.id.ED_Promem);
         ED_Raggio = (EditText) findViewById(R.id.ED_Raggio);
         
-        //SP_azione = (Spinner) findViewById(R.id.Action_spinner);
-        SP_App = (Spinner) findViewById(R.id.spinner3);
-        SP_Serv = (Spinner) findViewById(R.id.Service_list_SP);
+        //Spinner
+        SP_App_List = (Spinner) findViewById(R.id.App_list_SP);
+        SP_Serv_List = (Spinner) findViewById(R.id.Service_list_SP);
+        SP_App_Action = (Spinner) findViewById(R.id.ON_App_SP);
+        SP_Service_action = (Spinner) findViewById(R.id.ON_Service_SP);
+        
         SP_movimento = (Spinner) findViewById(R.id.Movimenti_spinner);
         
+        //CheckBox
         Ripetition_CB = (CheckBox) findViewById(R.id.Ripetition_CB);
-        
-        //root = (LinearLayout) findViewById(R.id.NChangable);
-        promemoria = (View) findViewById(R.id.l_promemoria);
-        app = (View) findViewById(R.id.l_app);
-        servizio = (View) findViewById(R.id.l_servizio);
+        Service_CB = (CheckBox) findViewById(R.id.Service_CB);
+        App_CB = (CheckBox) findViewById(R.id.App_CB);
        
         //Gestione Mappa
         mapView = (MapView) findViewById(R.id.mapView);
@@ -108,7 +121,8 @@ public class NewEvent extends MapActivity implements OnClickListener, OnItemSele
         Find_Position.setOnClickListener(this);
         addNweEvent.setOnClickListener(this);
         ED_posizione.setOnClickListener(this);
-        //SP_azione.setOnItemSelectedListener(this);
+        SP_Serv_List.setOnItemSelectedListener(this);
+        SP_App_List.setOnItemSelectedListener(this);
         
         fillAutoCompliteLocation();
         
@@ -145,51 +159,34 @@ public class NewEvent extends MapActivity implements OnClickListener, OnItemSele
 	public void onClick(View v) {
 		
 		switch ( v.getId() ) { 
-			case R.id.SaveNewEvent:
-					saveNewEvent();
-					finish();
-				break;	
-			case R.id.imageButton1:
-					putMarkers();
-				break;
+		
+		case R.id.Return:
+			finish();
+			break;
+		case R.id.SaveNewEvent:
+				saveNewEvent();
+				finish();
+			break;	
+		case R.id.imageButton1:
+				putMarkers();
+			break;
 		}
 	}
 	
 	// Metodo per la gestione dello spiner_action (Scelta dell'azione da interpretare)
 	public void onItemSelected(AdapterView<?> parent, View view, int pos,
 			long id) {
-		
-			try{
-				if (sceltaID != 0) {
-					root.removeAllViews();
-		        }
-				switch(pos){
-				case 0:
-					sceltaID = R.layout.promemoria;
-					break;
-				case 1:
-					sceltaID = R.layout.servizio;
-					break;
-				case 2:
-					sceltaID = R.layout.servizio;
-					break;
-				case 3:
-					sceltaID = R.layout.app;
-					break;
-				case 4:
-					sceltaID = R.layout.app;
-					break;
-				default:
-					sceltaID = R.layout.promemoria;
-					break;
-				}
-				View hiddenInfo = getLayoutInflater().inflate(sceltaID, root, false);
-				
-				root.addView(hiddenInfo);
-			}catch(Exception e){
-
-				System.err.println(e);
-			}		
+		System.out.println(parent.getId() +" applistsp"+ R.id.App_list_SP);
+			switch(parent.getId()){
+			case R.id.App_list_SP:
+				App_CB.setChecked(true);
+				Service_CB.setChecked(false);
+				break;
+			case R.id.Service_CB:
+				App_CB.setChecked(false);
+				Service_CB.setChecked(true);
+				break;
+			}
 	}
 
 	public void onNothingSelected(AdapterView<?> arg0) {
@@ -209,7 +206,7 @@ public class NewEvent extends MapActivity implements OnClickListener, OnItemSele
 	        PackageInfo p = packs.get(i);
 	        adapter.add(p.applicationInfo.loadLabel(getPackageManager()).toString());
         }
-        SP_App.setAdapter(adapter);
+        SP_App_List.setAdapter(adapter);
       }
 
 	public void putMarkers(){
@@ -263,15 +260,21 @@ public class NewEvent extends MapActivity implements OnClickListener, OnItemSele
 		 p.setLatitudine(microDegreesToDegrees(point.getLatitudeE6()));
 		 
 		 /*riempio Notificaton*/
+		 n.setEtichetta(ED_etichetta.getText().toString());
 		 
-		 if (SP_azione.getSelectedItem().toString().equals("Promemoria")){
-			 n.setTipo("Promemoria");
-			 n.setEtichetta(ED_etichetta.getText().toString());
-			 n.setAzione("Alert");
+		 if(App_CB.isChecked()){
+			 String azione =  SP_App_Action.getSelectedItem().toString();
+			 String tipo = SP_App_List.getSelectedItem().toString();
+			 n.setAzione(azione);
+			 n.setTipo(tipo);
+			 
 		 }else{
-			 n.setAzione(SP_azione.getSelectedItem().toString());
-			 n.setTipo(SP_Serv.getSelectedItem().toString());
-			 n.setEtichetta("");
+			 if(Service_CB.isChecked()) {
+			 String azione = SP_Service_action.getSelectedItem().toString();
+			 String tipo = SP_Serv_List.getSelectedItem().toString();
+			 n.setAzione(azione);
+			 n.setTipo(tipo);
+			 }
 		 }
 		 
 		 /*Riempio Event*/

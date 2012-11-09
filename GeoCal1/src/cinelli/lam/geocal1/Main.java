@@ -162,7 +162,6 @@ public class Main extends MapActivity implements OnClickListener, OnItemClickLis
         	
     		resultIntent.putExtra("ID", e.getId());
     		resultIntent.putExtra("Father", "Main");
-    		//resultIntent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_CLEAR_TOP);
     		
             PendingIntent resultPendingIntent = PendingIntent.getBroadcast(getApplicationContext(), 0, resultIntent, 0);
             
