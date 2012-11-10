@@ -24,8 +24,8 @@ import android.widget.TextView;
 public class SuccessEvent extends MapActivity{
 	EventsDataSource DS = new EventsDataSource(this);
 	TextView title;
-	TextView type;
-	TextView msg;
+	TextView raggio;
+	TextView ripetizione;
 	
 	private MapView mapView;
 	MapController mc;
@@ -47,8 +47,8 @@ public class SuccessEvent extends MapActivity{
         System.out.println("Id evento in SuccesEvent:  "+id_event);
         
         title = (TextView) findViewById(R.id.Event_etichetta_SE);
-        type = (TextView) findViewById(R.id.Event_tipo_SE);
-        msg = (TextView) findViewById(R.id.Event_testo_SE);
+        raggio = (TextView) findViewById(R.id.Event_Raggio_SE);
+        ripetizione = (TextView) findViewById(R.id.Event_Ripetizione_SE);
         mapView = (MapView) findViewById(R.id.mapView_SE);
         mapOverlays = mapView.getOverlays();
         drawable = this.getResources().getDrawable(R.drawable.mapmarker);
@@ -96,7 +96,12 @@ public class SuccessEvent extends MapActivity{
     	DS.deleteEvent(e);
     	
     	title.setText(e.getEtichetta());
-    	type.setText(e.getNotifica().getTipo());
+    	raggio.setText(e.getRaggio());
+    	if(e.getRipetizione()){
+    		ripetizione.setText("Si");
+    	}else{
+    		ripetizione.setText("No");
+    	}
     	
     	
     	DS.close();

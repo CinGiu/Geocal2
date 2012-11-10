@@ -20,8 +20,8 @@ public class ShowEvent extends MapActivity {
 	
 	EventsDataSource DS = new EventsDataSource(this);
 	TextView title;
-	TextView type;
-	TextView msg;
+	TextView raggio;
+	TextView ripetizione;
 	
 	private MapView mapView;
 	MapController mc;
@@ -41,8 +41,8 @@ public class ShowEvent extends MapActivity {
         System.out.println("id evento in ShowEvent: "+id_event);
         
         title = (TextView) findViewById(R.id.Event_etichetta_SW);
-        type = (TextView) findViewById(R.id.Event_tipo_SW);
-        msg = (TextView) findViewById(R.id.Event_testo_SW);
+        raggio = (TextView) findViewById(R.id.Event_Raggio_SW);
+        ripetizione = (TextView) findViewById(R.id.Event_Ripetizione_SW);
         mapView = (MapView) findViewById(R.id.mapView_SW);
         mapOverlays = mapView.getOverlays();
         drawable = this.getResources().getDrawable(R.drawable.mapmarker);
@@ -55,8 +55,14 @@ public class ShowEvent extends MapActivity {
     public void showEvent(int id){
     	DS.open();
     	Event e = DS.getEvent(id);
+    	System.out.println(e.getEtichetta());
     	title.setText(e.getEtichetta());
-    	type.setText(e.getNotifica().getTipo());
+    	raggio.setText(""+e.getRaggio()+" metri");
+    	if(e.getRipetizione()){
+    		ripetizione.setText("Si");
+    	}else{
+    		ripetizione.setText("No");
+    	}
     	DS.close();
     	
     	/*Metodi per la gestione della mappa*/

@@ -120,6 +120,7 @@ public class NewEvent extends MapActivity implements OnClickListener, OnItemSele
         
         Find_Position.setOnClickListener(this);
         addNweEvent.setOnClickListener(this);
+        close.setOnClickListener(this);
         ED_posizione.setOnClickListener(this);
         SP_Serv_List.setOnItemSelectedListener(this);
         SP_App_List.setOnItemSelectedListener(this);

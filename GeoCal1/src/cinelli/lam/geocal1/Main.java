@@ -40,7 +40,7 @@ import android.widget.SimpleAdapter;
 
 
 
-public class Main extends MapActivity implements OnClickListener, OnItemClickListener{
+public class Main extends MapActivity implements OnClickListener, OnItemClickListener, LocationListener{
 	private ListView listaEventi;
 	private MapView mapView;
 	List<Position> listaPosizioni = new ArrayList<Position>();
@@ -49,13 +49,16 @@ public class Main extends MapActivity implements OnClickListener, OnItemClickLis
         
     GeoPoint p;
     MapOverlay itemizedoverlay;
+    MapOverlay current;
     Drawable drawable;
+    Drawable current_drawable;
      
     LocationManager locationManager;
     EventsDataSource DS = new EventsDataSource(this);
 	int[] list_IDevent = new int[50];
 
-    
+	private int latituteField;
+	private int longitudeField;
 	@Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -70,8 +73,13 @@ public class Main extends MapActivity implements OnClickListener, OnItemClickLis
         mapView = (MapView) findViewById(R.id.mapView);
         mapOverlays = mapView.getOverlays();
         drawable = this.getResources().getDrawable(R.drawable.mapmarker);
+        current_drawable = this.getResources().getDrawable(R.drawable.current);
+        
         itemizedoverlay = new MapOverlay(drawable, this); 
-       
+        current = new MapOverlay(current_drawable, this);
+        
+        locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
+        
         listaEventi.setOnItemClickListener(new OnItemClickListener()
         {
         	public void onItemClick(AdapterView<?> arg0, View v, int position, long id)
@@ -131,6 +139,24 @@ public class Main extends MapActivity implements OnClickListener, OnItemClickLis
         if(listaPosizioni.size() != 0){
         	mapOverlays.add(itemizedoverlay);
         }
+        
+        //Mostro Posizione attuale
+        locationManager.requestLocationUpdates(
+                LocationManager.GPS_PROVIDER,
+                0,
+                0,
+                this);
+        GeoPoint initGeoPoint = new GeoPoint(
+                (int)(locationManager.getLastKnownLocation(
+                 LocationManager.GPS_PROVIDER)
+                 .getLatitude()*1000000),
+                (int)(locationManager.getLastKnownLocation(
+                 LocationManager.GPS_PROVIDER)
+                 .getLongitude()*1000000));
+        current.addOverlay(new OverlayItem(initGeoPoint, "c", "current"));
+        mapOverlays.add(current);
+        
+        
 	}
 	
 	
@@ -157,19 +183,20 @@ public class Main extends MapActivity implements OnClickListener, OnItemClickLis
         	listaPosizioni.add(e.getPosizione());
         	list_IDevent[i] = e.getId();
         	
-        	Intent resultIntent = new Intent(this, SuccessEvent.class);
+        	Intent resultIntent = new Intent(this, NewNotification.class);
        
         	
     		resultIntent.putExtra("ID", e.getId());
     		resultIntent.putExtra("Father", "Main");
     		
             PendingIntent resultPendingIntent = PendingIntent.getBroadcast(getApplicationContext(), 0, resultIntent, 0);
-            
-            locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
-           
-           	locationManager.addProximityAlert(((double) e.getPosizione().getLatitudine() / 1E6), ((double) e.getPosizione().getLongitudine() / 1E6), 500, e.getRaggio(), resultPendingIntent );
            	IntentFilter intentFilter = new IntentFilter();
            	registerReceiver(new NewNotification(),intentFilter);
+           	
+            
+           
+           	locationManager.addProximityAlert(((double) e.getPosizione().getLatitudine() / 1E6), ((double) e.getPosizione().getLongitudine() / 1E6), 500, e.getRaggio(), resultPendingIntent );
+           	
         }
          
         String[] from={"etichetta", "raggio", "stato"};
@@ -208,6 +235,28 @@ public class Main extends MapActivity implements OnClickListener, OnItemClickLis
 	}
 
 	public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
+		
+	}
+
+	 public void onLocationChanged(Location argLocation) {
+       GeoPoint myGeoPoint = new GeoPoint(
+        (int)(argLocation.getLatitude()*1000000),
+        (int)(argLocation.getLongitude()*1000000));
+       	mc.animateTo(myGeoPoint);
+	 }
+
+	public void onProviderDisabled(String arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void onProviderEnabled(String arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void onStatusChanged(String arg0, int arg1, Bundle arg2) {
+		// TODO Auto-generated method stub
 		
 	}
 	

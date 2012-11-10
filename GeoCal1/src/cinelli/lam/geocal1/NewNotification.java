@@ -34,8 +34,7 @@ public class NewNotification extends BroadcastReceiver {
         PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, null, 0);        
         
         Notification notification = createNotification();
-        notification.setLatestEventInfo(context, 
-            "Proximity Alert!", "You are near your point of interest.", pendingIntent);
+        notification.setLatestEventInfo(context, "Proximity Alert!", "You are near your point of interest.", pendingIntent);
         
         notificationManager.notify(NOTIFICATION_ID, notification);
         
